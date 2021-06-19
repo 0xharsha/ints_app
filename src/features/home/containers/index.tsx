@@ -24,7 +24,7 @@ interface OrganisationData{
 function Home() {
 
     useEffect(() => {
-        orgCreate();
+        
     }, []);
 
     const submitLogin = () : void => {
