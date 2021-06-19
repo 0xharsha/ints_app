@@ -1,47 +1,52 @@
-import axiosInstance from './httpinterceptor'
+import axios, { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios';
+import axiosInstance from './Interceptors'
 
-export const globalGetService = <params, res>(url:string, params?:params): Promise<res> =>  {
+
+export const globalGetService = <res, data=undefined>(url:string, data?:data): Promise<res>  =>  {
   return new Promise(
     function(resolve, reject){
       axiosInstance({
         method: 'GET',
         url: url,
-        params: params
+        params: data,
       })
-      .then(response => {
+      .then((response:any) => {
         resolve(response);
       }).catch((error) => { reject(error)})
     }
   )
 }
-// export const globalPostService = (url, data) => {
-//   return new Promise(
-//     function(resolve, reject){
-//       axiosInstance({
-//         method: 'POST',
-//         url: url,
-//         data: data
-//       })
-//       .then(response => {
-//         resolve(response);
-//       }).catch((error) => { reject(error)})
-//     }
-//   )
-// }
-// export const globalPutService = (url, data) => {
-//     return new Promise(
-//         function(resolve, reject){
-//           axiosInstance({
-//             method: 'PUT',
-//             url: url,
-//             data: data
-//           })
-//           .then(response => {
-//             resolve(response);
-//           }).catch((error) => { reject(error)})
-//         }
-//     )
-// }
+
+export const globalPostService = <res, data=undefined>(url:string, data?:data): Promise<res> => {
+  return new Promise(
+    function(resolve, reject){
+      axiosInstance({
+        method: 'POST',
+        url: url,
+        data: data
+      })
+      .then((response:any) => {
+        resolve(response);
+      }).catch((error) => { reject(error)})
+    }
+  )
+}
+
+export const globalPutService = <res, data=undefined>(url:string, data?:data): Promise<res> => {
+    return new Promise(
+        function(resolve, reject){
+          axiosInstance({
+            method: 'PUT',
+            url: url,
+            data: data
+          })
+          .then((response:any) => {
+            resolve(response);
+          }).catch((error) => { reject(error)})
+        }
+    )
+}
+
 // export const globalExportService = (url, queryParams={}) => {
 //   return new Promise(function(resolve, reject){
 //     axiosInstance({
@@ -58,17 +63,18 @@ export const globalGetService = <params, res>(url:string, params?:params): Promi
 //     })
 //   })
 // }
-// export const globalDeleteService = (url, data) => {
-//   return new Promise(
-//       function(resolve, reject){
-//         axiosInstance({
-//           method: 'DELETE',
-//           url: url,
-//           data: data
-//         })
-//         .then(response => {
-//           resolve(response);
-//         }).catch((error) => { reject(error)})
-//       }
-//   )
-// }
+
+export const globalDeleteService = <res, data=undefined>(url:string, data?:data): Promise<res> => {
+  return new Promise(
+      function(resolve, reject){
+        axiosInstance({
+          method: 'DELETE',
+          url: url,
+          data: data
+        })
+        .then((response:any) => {
+          resolve(response);
+        }).catch((error) => { reject(error)})
+      }
+  )
+}
